@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+:root {
+  --tinta: #14213d;
+  --tenue: #4d5b78;
+  --linea: #d5dbe8;
+  --papel: #ffffff;
+  --moneda: #ffc531;
+  --moneda-oscura: #d99a00;
+  --cielo-alto: #8fc6f3;
+  --cielo-bajo: #d8ecfa;
+  --mar: #2b6cd4;
+  --pasto: #79c25b;
+}
+
+@theme inline {
+  --font-display: var(--fuente-display);
+  --font-sans: var(--fuente-texto);
+  --font-mono: var(--fuente-mono);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-color: var(--tinta) var(--cielo-bajo);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  color: var(--tinta);
+  background: linear-gradient(180deg, var(--cielo-alto) 0%, #b4d9f6 40%, var(--cielo-bajo) 100%) fixed;
+  font-family: var(--fuente-texto), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--moneda);
+  color: var(--tinta);
+}
+
+:focus-visible {
+  outline: 3px solid var(--tinta);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+a {
+  text-underline-offset: 4px;
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0 1.4rem;
+  border-radius: 16px;
+  font-weight: 700;
+  transition-property: transform, box-shadow, background-color;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.boton:active {
+  transform: translateY(3px) scale(0.96);
+}
+
+.boton-moneda {
+  background: var(--moneda);
+  color: var(--tinta);
+  box-shadow: inset 0 -4px 0 var(--moneda-oscura), 0 10px 24px -12px rgba(153, 102, 0, 0.7);
+}
+
+.boton-moneda:hover {
+  background: #ffd157;
+}
+
+.boton-claro {
+  background: var(--papel);
+  color: var(--tinta);
+  box-shadow: inset 0 -4px 0 var(--linea), 0 10px 24px -14px rgba(20, 33, 61, 0.5);
+}
+
+.boton-claro:hover {
+  background: #f4f7fc;
+}
+
+@utility panel {
+  background: var(--papel);
+  border-radius: 30px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 30px 60px -28px rgba(20, 33, 61, 0.55), 0 8px 18px -10px rgba(20, 33, 61, 0.25);
+}
+
+.ficha {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 0.7rem;
+  border-radius: 10px;
+  background: #eef3fb;
+  color: var(--tinta);
+  font-family: var(--fuente-mono), monospace;
+  font-size: 0.78rem;
+}
+
+.imagen-borde {
+  outline: 1px solid oklch(0 0 0 / 0.1);
+  outline-offset: -1px;
+}

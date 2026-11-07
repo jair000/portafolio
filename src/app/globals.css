@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: only light;
   --tinta: #14213d;
   --tenue: #4d5b78;
   --linea: #d5dbe8;
@@ -38,6 +39,9 @@ body {
   color: var(--tinta);
   background: linear-gradient(180deg, var(--cielo-alto) 0%, #b4d9f6 40%, var(--cielo-bajo) 100%) fixed;
   font-family: var(--fuente-texto), system-ui, sans-serif;
+  /* Contexto de apilamiento propio: el canvas 3D (-z-10) se pinta encima del
+     fondo del body aunque un modo oscuro forzado lo cambie. */
+  isolation: isolate;
 }
 
 ::selection {

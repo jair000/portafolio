@@ -544,6 +544,33 @@ function Camara() {
   return null;
 }
 
+/**
+ * Cielo pintado dentro de WebGL (mismo degradado que el fondo CSS del body).
+ * Los modos oscuros forzados de algunos navegadores (Modo noche de Brave,
+ * Dark Reader) reescriben el CSS pero no los píxeles del canvas, así el
+ * cielo nunca queda negro detrás de la escena.
+ */
+function Cielo() {
+  const textura = useMemo(() => {
+    const lienzo = document.createElement("canvas");
+    lienzo.width = 2;
+    lienzo.height = 256;
+    const ctx = lienzo.getContext("2d");
+    if (!ctx) return null;
+    const degradado = ctx.createLinearGradient(0, 0, 0, lienzo.height);
+    degradado.addColorStop(0, "#8fc6f3");
+    degradado.addColorStop(0.4, "#b4d9f6");
+    degradado.addColorStop(1, "#d8ecfa");
+    ctx.fillStyle = degradado;
+    ctx.fillRect(0, 0, lienzo.width, lienzo.height);
+    const t = new THREE.CanvasTexture(lienzo);
+    t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  }, []);
+  if (!textura) return null;
+  return <primitive attach="background" object={textura} />;
+}
+
 export default function Mundo() {
   return (
     <Canvas
@@ -553,6 +580,7 @@ export default function Mundo() {
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       aria-hidden
     >
+      <Cielo />
       <fog attach="fog" args={["#d3e9f8", 55, 175]} />
       <hemisphereLight args={["#dff1ff", "#4c7d3a", 1.4]} />
       <directionalLight position={[-20, 30, 18]} intensity={1.9} color="#fff1dc" />

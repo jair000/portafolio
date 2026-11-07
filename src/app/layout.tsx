@@ -10,10 +10,13 @@ const mono = localFont({ src: "../fonts/jetbrains-mono-latin-wght-normal.woff2",
 export const metadata: Metadata = {
   title: `${perfil.nombre} · ${perfil.titulo}`,
   description: `${perfil.titulo} en Lima. ${perfil.stackPrincipal.join(", ")}. Portafolio interactivo en 3D.`,
+  // Pide a Dark Reader y al Modo noche de Brave que no oscurezcan la página.
+  other: { "darkreader-lock": "true" },
 };
 
 export const viewport: Viewport = {
   themeColor: "#8fc6f3",
+  colorScheme: "only light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
